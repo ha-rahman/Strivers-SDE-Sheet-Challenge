@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+void f(int index, string ds, map<string, int> &mp, string &s, vector<string> &ans){
+    if(index == s.size()){
+        ans.push_back(ds);
+        return;
+    }
+    for(int i = index; i < s.size(); i++){
+        string tmp = s.substr(index, i-index+1);
+        if(mp[tmp] >= 1){
+            int n = ds.size();
+            ds += tmp + " ";
+            f(i+1, ds, mp, s, ans);
+            ds.erase(n);
+        }
+    }
+}
+vector<string> wordBreak(string &s, vector<string> &dictionary){
+    // Write your code here
+    vector<string> ans;
+    map<string, int> mp;
+    for(int i = 0; i < dictionary.size(); i++ ){
+        mp[dictionary[i]]++;
+    }
+    f(0, "", mp, s, ans);
+    return ans;
+}
