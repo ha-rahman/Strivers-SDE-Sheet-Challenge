@@ -1,0 +1,25 @@
+#include <bits/stdc++.h> 
+string writeAsYouSpeak(int n) 
+{
+	// Write your code here.	
+	if(n == 1) return "1";
+    if(n == 2) return "11";
+    string s = "11";
+    for (int i = 3; i <= n; i++){
+        s += "?";
+        int count = 1;
+        string str = "";
+        for (int j = 0; j < s.length() - 1; j++){
+            if (s[j] == s[j + 1]){
+                count++;
+            }
+            else{
+                str += to_string(count);
+                str += s[j];
+                count = 1;
+            }
+        }
+        s = str;
+    }
+    return s;
+}
