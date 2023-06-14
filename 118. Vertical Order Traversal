@@ -1,0 +1,60 @@
+#include <bits/stdc++.h> 
+/************************************************************
+
+Following is the Binary Tree node class
+    
+template <typename T = int>
+class TreeNode
+{
+public:
+    T data;
+    TreeNode<T> *left;
+    TreeNode<T> *right;
+
+    TreeNode(T val)
+    {
+        this->data = val;
+        left = NULL;
+        right = NULL;
+    }
+
+    ~TreeNode()
+    {
+        if (left != NULL)
+        {
+            delete left;
+        }
+        if (right != NULL)
+        {
+            delete right;
+        }
+    }
+};
+
+************************************************************/
+void mapHorizontalDistance(TreeNode<int> *root, map<int, map<int, vector<int>>> &hash, int dist, int level){
+    // Base Case
+    if(root == NULL) return;
+    hash[dist][level].push_back(root->data);
+    level++;
+    if(root->left != NULL)
+        mapHorizontalDistance(root->left, hash, dist - 1, level);
+    if(root->right != NULL)
+        mapHorizontalDistance(root->right, hash, dist + 1, level);
+}
+vector<int> verticalOrderTraversal(TreeNode<int> *root)
+{
+    //    Write your code here.
+    map<int, map<int, vector<int>>> hash;
+    // We will do pre-order traverser using Recursion.
+    mapHorizontalDistance(root, hash, 0, 0);
+    vector<int> ans;
+    for(auto it : hash){
+        for(auto iit : it.second){
+            for(auto j : iit.second){
+                ans.push_back(j);
+            }
+        }
+    }
+    return ans;
+}
