@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+long f(int i, int n, int *denominations, int value, vector<vector<long>> &dp)
+{
+    if(i>=n)
+    return 0;
+    if(value==0)
+    return 1;
+
+    if(dp[i][value] !=-1)
+    return dp[i][value];
+
+    long pick= 0;
+    if(denominations[i]<=value)
+    pick= f(i,n,denominations,value-denominations[i],dp);
+    long npick= f(i+1, n, denominations, value,dp);
+
+    return dp[i][value]=pick+npick;
+}
+long countWaysToMakeChange(int *denominations, int n, int value)
+{
+    //Write your code here
+    vector<vector<long>> dp(n, vector<long> (value+1,-1));
+    return f(0,n,denominations,value,dp);
+}
