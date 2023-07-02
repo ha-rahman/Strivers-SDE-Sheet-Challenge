@@ -7,7 +7,6 @@ class Compare{
 };
 vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pair<int, int>, int>> &g)
 {
-    // Prim's Algorithm
     // Adjacency List
     vector<vector<pair<int, int>>> adj(n + 1);
     for(auto edge : g){
