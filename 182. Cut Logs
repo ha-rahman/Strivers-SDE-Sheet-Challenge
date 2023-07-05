@@ -27,6 +27,7 @@ int helper(int e,int f,vector<vector<int>>&dp) {
     }
     return dp[e][f]=ans;
 }
+
 int cutLogs(int k, int n) {
     vector<vector<int>>dp(k+1,vector<int>(n+1,-1));
     return helper(k,n,dp);
