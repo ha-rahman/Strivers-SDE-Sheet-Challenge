@@ -16,7 +16,6 @@ bool wordBreak(vector < string > & arr, int n, string & s) {
         }
         i++;
     }
-    // cout<<idx<<endl;
     if(idx==s.size()-1) return 1;
     return 0;
 }
